@@ -5,6 +5,9 @@ public class Song
 	String album;
 	String songPath;
 	String imagePath;
+	// pointers for list
+	Song prev;
+	Song next;
 	
 	// constructor
 	public Song (String title, String artist, String album, String songPath, String imagePath)
