@@ -38,5 +38,5 @@ public class Playlist
 			// increase size by 1
 			size++;
 		}
-	}
+	} 
 }
