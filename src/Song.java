@@ -1,3 +1,10 @@
+/* Author: Julia Bristow
+ * CS 2113
+ * 
+ * Song class for use in a file-based
+ * music playing program
+ */
+
 public class Song
 {
 	String title;
@@ -5,9 +12,6 @@ public class Song
 	String album;
 	String songPath;
 	String imagePath;
-	// pointers for list
-	Song prev;
-	Song next;
 	
 	// constructor
 	public Song (String title, String artist, String album, String songPath, String imagePath)
