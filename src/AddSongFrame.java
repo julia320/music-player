@@ -96,7 +96,7 @@ public class AddSongFrame extends JFrame
 			public void actionPerformed (ActionEvent e) {
 				// make a new frame that shows the music info
 				PlaylistFrame musicFrame = new PlaylistFrame();
-				musicFrame.go(500,500,songList);
+				musicFrame.go(500,500,playlist,songList);
 			}
 		} // end of local class goToPlaylistAL
 		
