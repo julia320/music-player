@@ -2,3 +2,9 @@
 /GUI.class
 /GUI$1AddSongAL.class
 /GUI$1printAL.class
+/AddSongFrame$1AddSongAL.class
+/AddSongFrame$1goToActionListener.class
+/AddSongFrame.class
+/PlaylistFrame.class
+/AddSongFrame$1GoToPlaylistAL.class
+/PlaylistFrame$1AddMoreAL.class
