@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 public class PlaylistFrame extends JFrame
 {
 	JButton goToAdd;
+	JButton play;
+	JTextArea received;
+	JPanel south;
+	ListNode currNode;
 	
-	void go (int width, int height, JTextArea list)
+	void go (int width, int height, Playlist playlist, JTextArea list)
 	{
 		// set up initial frame
-		PlaylistFrame frame = new PlaylistFrame();
 		this.setTitle("Music Player");
 		this.setResizable(true);
 		this.setSize(width, height);
@@ -23,10 +26,29 @@ public class PlaylistFrame extends JFrame
 		cPane.add(BorderLayout.EAST, list);
 		
 		// filler message that will eventually be received over network
-		JTextArea received = new JTextArea("Julia is listening to a song");
+		received = new JTextArea("Julia is listening to a song");
+		
+		
+		// button to play the songs in the playlist
+		play = new JButton("Play Playlist");
+		// local class definition for the Action Listener for play
+		class PlayAL implements ActionListener {
+			public void actionPerformed (ActionEvent a) {
+				currNode = playlist.head;
+				while (currNode != null) {
+					System.out.println(currNode.song.title);
+					currNode = currNode.next;
+				}
+			}
+		}
+		// create the action listener
+		PlayAL playAL = new PlayAL();
+		// add Action Listener to play button
+		play.addActionListener(playAL);
+		
 		
 		// button to go back to the Add Songs interface
-		goToAdd = new JButton("Add More Songs");
+		goToAdd = new JButton("Make A New Playlist");
 		// local class definition for an Action Listener for goToAdd
 		class AddMoreAL implements ActionListener {
 			public void actionPerformed(ActionEvent a) {
@@ -34,16 +56,20 @@ public class PlaylistFrame extends JFrame
 				addFrame.go(500,500);
 			}
 		}
+		// create action listener
 		AddMoreAL goToAddAL = new AddMoreAL();
-		// add the action listener to the goToAdd button
+		// add action listener to the goToAdd button
 		goToAdd.addActionListener(goToAddAL);
 		
-		// new panel for message and button
-		JPanel south = new JPanel();
+		
+		// new panel for message and buttons
+		south = new JPanel();
 		// give the south panel a Box Layout
 		south.setLayout(new BoxLayout(south,BoxLayout.Y_AXIS));
 		// add message to south panel
 		south.add(received);
+		// add play button to south panel
+		south.add(play);
 		// add "go back" button to south panel
 		south.add(goToAdd);
 		// add panel with the message and button to the South area
