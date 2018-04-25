@@ -7,9 +7,11 @@ public class PlaylistFrame extends JFrame
 {
 	JButton goToAdd;
 	JButton playAll;
+	JButton playNext;
+	JButton playRandom;
 	JTextArea received;
 	JPanel south;
-	ListNode currNode;
+	ListNode currSong;
 	
 	void go (int width, int height, Playlist playlist, JTextArea list)
 	{
@@ -17,6 +19,9 @@ public class PlaylistFrame extends JFrame
 		this.setTitle("Music Player");
 		this.setResizable(true);
 		this.setSize(width, height);
+		
+		// start current song at the front of playlist
+		currSong = playlist.head;
 		
 		// get the content pane
 		Container cPane = this.getContentPane();
@@ -29,22 +34,40 @@ public class PlaylistFrame extends JFrame
 		received = new JTextArea("Julia is listening to a song");
 		
 		
-		// button to play the songs in the playlist
+		// button to play ALL the songs in the playlist
 		playAll = new JButton("Play All");
 		// local class definition for the Action Listener for play
-		class PlayAL implements ActionListener {
+		class PlayAllAL implements ActionListener {
 			public void actionPerformed (ActionEvent a) {
-				currNode = playlist.head;
-				while (currNode != null) {
-					playlist.playAll();
-					currNode = currNode.next;
+				while (currSong != null) {
+					// play the song in currNode
+					currSong.song.play();
+					// advance currSong
+					currSong = currSong.next;
 				}
 			}
 		}
 		// create the action listener
-		PlayAL playAL = new PlayAL();
+		PlayAllAL playAllAL = new PlayAllAL();
 		// add Action Listener to play button
-		play.addActionListener(playAL);
+		playAll.addActionListener(playAllAL);
+		
+		
+		// button to play the next song in the playlist
+		playNext = new JButton("Play Next Song");
+		// local class definition for the Action Listener for play
+		class PlayNextAL implements ActionListener {
+			public void actionPerformed (ActionEvent a) {
+				// move currSong to the next song
+				currSong = currSong.next;
+				// play the song
+				currSong.song.play();
+			}
+		}
+		// create the action listener
+		PlayNextAL playNextAL = new PlayNextAL();
+		// add Action Listener to play button
+		playNext.addActionListener(playNextAL);
 		
 		
 		// button to go back to the Add Songs interface
@@ -69,7 +92,7 @@ public class PlaylistFrame extends JFrame
 		// add message to south panel
 		south.add(received);
 		// add play button to south panel
-		south.add(play);
+		south.add(playAll);
 		// add "go back" button to south panel
 		south.add(goToAdd);
 		// add panel with the message and button to the South area
