@@ -6,7 +6,7 @@
  */
 
 import java.awt.*;
-import javax.swing.ImageIcon;
+import java.io.*;
 import jm.util.*;
 
 public class Song
@@ -27,17 +27,18 @@ public class Song
 		this.album = album;
 		this.songPath = songPath;
 		this.imagePath = imagePath;
-		this.songData = Read.audio(songPath);
-		this.image = new ImageIcon(imagePath).getImage();
+		this.songData= Read.audio(songPath);
 	}
+
+	// accessors
 	
-	// getter and setter methods
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 	
 	public void setArtist(String artist) {
@@ -45,7 +46,7 @@ public class Song
 	}
 	
 	public String getArtist() {
-		return artist;
+		return this.artist;
 	}
 	
 	public void setAlbum(String album) {
@@ -53,7 +54,7 @@ public class Song
 	}
 	
 	public String getAlbum() {
-		return album;
+		return this.album;
 	}
 	
 	public void setSongPath(String songPath) {
@@ -61,7 +62,7 @@ public class Song
 	}
 	
 	public String getSongPath() {
-		return songPath;
+		return this.songPath;
 	}
 	
 	public void setSongData(float[] songData) {
@@ -69,7 +70,7 @@ public class Song
 	}
 	
 	public float[] getSongData() {
-		return songData;
+		return this.songData;
 	}
 		
 	public void setImagePath(String imagePath) {
@@ -77,7 +78,7 @@ public class Song
 	}
 	
 	public String getImagePath() {
-		return imagePath;
+		return this.imagePath;
 	}
 	
 	public void setImage(Image image) {
@@ -85,6 +86,11 @@ public class Song
 	}
 	
 	public Image getImage() {
-		return image;
+		return this.image;
+	}
+	
+	public void play() {
+		Write.audio(this.songData, "mix.wav",2, 44100, 16);
+		Play.au("mix.wav", false);  
 	}
 }
