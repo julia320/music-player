@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/Julia/Downloads/jMusic/jMusic_1.6_inst.zip"/>
 	<classpathentry kind="lib" path="C:/Users/Julia/Downloads/jMusic/jMusic1.6.5.jar"/>
+	<classpathentry kind="lib" path="/Users/JMusic/jMusic1.6.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
