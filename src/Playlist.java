@@ -42,7 +42,7 @@ public class Playlist
 		}
 	} 
 	
-	public void play () 
+	public void playAll () 
 	{
 		// create a float[] the size of all songs
 		int totalSize = 0;

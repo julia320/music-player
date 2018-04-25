@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class PlaylistFrame extends JFrame
 {
 	JButton goToAdd;
-	JButton play;
+	JButton playAll;
 	JTextArea received;
 	JPanel south;
 	ListNode currNode;
@@ -30,13 +30,13 @@ public class PlaylistFrame extends JFrame
 		
 		
 		// button to play the songs in the playlist
-		play = new JButton("Play Playlist");
+		playAll = new JButton("Play All");
 		// local class definition for the Action Listener for play
 		class PlayAL implements ActionListener {
 			public void actionPerformed (ActionEvent a) {
 				currNode = playlist.head;
 				while (currNode != null) {
-					playlist.play();
+					playlist.playAll();
 					currNode = currNode.next;
 				}
 			}
