@@ -76,9 +76,9 @@ public class AddSongFrame extends JFrame
 				// add song to playlist
 				playlist.add(newSong);
 				// add song title to text list
-				songList.append(newSong.title+" \n");
+				songList.append(newSong.getTitle()+" \n");
 				// test that songs are being added
-				System.out.println(newSong.title+" was added!");
+				System.out.println(newSong.getTitle()+" was added!");
 			}
 		} // end of local class AddSongAL
 		

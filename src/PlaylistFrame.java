@@ -36,7 +36,7 @@ public class PlaylistFrame extends JFrame
 			public void actionPerformed (ActionEvent a) {
 				currNode = playlist.head;
 				while (currNode != null) {
-					System.out.println(currNode.song.title);
+					playlist.play();
 					currNode = currNode.next;
 				}
 			}
