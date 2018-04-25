@@ -5,6 +5,8 @@
  * music playing program
  */
 
+import jm.util.*;
+
 public class Playlist
 {
 	ListNode head;
@@ -39,4 +41,39 @@ public class Playlist
 			size++;
 		}
 	} 
+	
+	public void play () 
+	{
+		// create a float[] the size of all songs
+		int totalSize = 0;
+		// go through each node in the list
+		ListNode node = head;
+		for (int x=0; x<this.size; x++)
+		{
+			// add size of the current song data to totalSize
+			totalSize += node.song.getSongData().length;
+			node = node.next;
+		}
+		// make a new float array the size of all songs combined
+		float[] allSongData = new float[totalSize];
+		
+		// copy the data from each song over to the cumulative float array
+		int count = 0;
+		// start at the first node
+		ListNode iter = head;
+		for (int i=0; i<this.size; i++)
+		{
+			for (int j=0; j<iter.song.getSongData().length; j++)
+			{
+				allSongData[count] = iter.song.getSongData()[j];
+				count++;
+			}
+			// advance the iterator node
+			iter = iter.next;
+		}
+		
+		// make it into one file that can be played
+		Write.audio (allSongData, "mix.wav", 2, 44100, 16);
+		Play.au("mix.wav");		
+	}
 }
