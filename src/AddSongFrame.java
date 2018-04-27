@@ -1,3 +1,10 @@
+package finalproject;
+
+/* Author: Julia Bristow
+ * CS 2113
+ * 
+ * GUI for putting songs into a playlist
+ */
 
 
 import javax.swing.*;
