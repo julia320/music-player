@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Julia/Downloads/jMusic/jMusic_1.6_inst.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Julia/Downloads/jMusic/jMusic1.6.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

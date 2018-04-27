@@ -1,12 +1,22 @@
+package src;
+
+/* Author: Julia Bristow
+ * CS 2113
+ * 
+ * Node class for use in a linked list of songs
+ */
+
 public class ListNode 
 {
-	Song song; 
+	Song song;
+	ListNode next;
 	ListNode prev;
-	ListNode next; 
 	
-	ListNode (Song song)
+	// constructor
+	public ListNode (Song song)
 	{
-		// build a new list node
 		this.song = song;
+		next = null;
+		prev = null; 
 	}
 }
