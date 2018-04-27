@@ -1,7 +1,5 @@
-package src;
-
 /* Authors: Julia Bristow and Neel Bhagwat
- * Song class
+ * Song class			
  * Purpose: to make a song class that stores cover art, title, artist, album, and songData.
  * Plays the specified song. 
  * 
@@ -12,7 +10,7 @@ import java.io.*;
 import jm.util.*;
 
 public class Song
-{
+
 	private String title;
 	private String artist;
 	private String album;
@@ -72,7 +70,7 @@ public class Song
 	public float[] getSongData() {
 		return this.songData;
 	}
-		
+
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
@@ -80,7 +78,7 @@ public class Song
 	public String getImagePath() {
 		return this.imagePath;
 	}
-	
+
 	public void setImage(Image image) {
 		this.image = image;
 	}
