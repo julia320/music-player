@@ -10,7 +10,7 @@ import java.io.*;
 import jm.util.*;
 
 public class Song
-
+{
 	private String title;
 	private String artist;
 	private String album;
