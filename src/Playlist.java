@@ -1,9 +1,4 @@
-/* Author: Julia Bristow
- * CS 2113
- * 
- * Linked list of songs for use in a file-based
- * music playing program
- */
+
 
 import jm.util.*;
 
@@ -16,6 +11,7 @@ public class Playlist
 	// add a song to the end of the list
 	void add (Song song)
 	{
+		// if list is not empty
 		if (size!=0)
 		{
 			// make new node with song information

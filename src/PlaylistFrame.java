@@ -1,15 +1,9 @@
-/* Author: Julia Bristow
- * CS 2113
- * 
- * Frame that shows a user-made playlist, info about 
- * the current song, and allows songs to be played
- */
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import jm.util.Play;
 
 public class PlaylistFrame extends JFrame
 {
@@ -20,11 +14,8 @@ public class PlaylistFrame extends JFrame
 	private JLabel received;
 	private JPanel south;
 	private JPanel playButtons;
-	private JPanel songInfo;
+	private JTextArea songInfo;
 	private ListNode currSong;
-	private JLabel currTitle;
-	private JLabel currArtist;
-	private JLabel currAlbum;
 	
 	void go (int width, int height, Playlist playlist, JTextArea list)
 	{
@@ -35,14 +26,10 @@ public class PlaylistFrame extends JFrame
 		
 		// start current song at the front of playlist
 		currSong = playlist.head;
-		// create a panel to put the song info in
-		songInfo = new JPanel();
-		// set Box Layout for songInfo
-		songInfo.setLayout(new BoxLayout(songInfo, BoxLayout.Y_AXIS));
-		// initialize all the current song info labels
-		currTitle = new JLabel();
-		currArtist = new JLabel();
-		currAlbum = new JLabel();
+		// initialize songInfo
+		songInfo = new JTextArea();
+		// show the current song information
+		setSongInfo();
 		
 		// get the content pane
 		Container cPane = this.getContentPane();
@@ -61,10 +48,10 @@ public class PlaylistFrame extends JFrame
 		class PlayAllAL implements ActionListener {
 			public void actionPerformed (ActionEvent a) {
 				// stop playing the current song
-				// NEED A STOP METHOD										****
+				currSong.song.stop();
 				while (currSong != null) {
 					// change current song info
-					songInfo = refreshSongInfo(currSong.song);
+					setSongInfo();
 					// play the song in currNode
 					currSong.song.play();
 					// advance currSong
@@ -84,23 +71,13 @@ public class PlaylistFrame extends JFrame
 		class PlayNextAL implements ActionListener {
 			public void actionPerformed (ActionEvent a) {
 				// stop playing the current song
-				// NEED A STOP METHOD								****
+				currSong.song.stop();
 				// move currSong to the next song
 				currSong = currSong.next;
 				// change current song info
-				songInfo = refreshSongInfo(currSong.song);
-				// if not at the end
-				if (currSong!=null) {
-					// play the song
-					currSong.song.play();
-				}
-				// else if the end has been reached
-				else {
-					// go back to the beginning
-					currSong = playlist.head;
-					// play that
-					currSong.song.play();
-				}
+				setSongInfo();
+				// play the song
+				playSong(playlist);
 			}
 		}
 		// create the action listener
@@ -115,7 +92,7 @@ public class PlaylistFrame extends JFrame
 		class PlayRandomAL implements ActionListener {
 			public void actionPerformed (ActionEvent a) {
 				// stop playing the current song
-				// NEED A STOP METHOD										****
+				currSong.song.stop();
 				// pick a random number from 1 to # of songs
 				int random = (int)((Math.random()*playlist.size)+1);
 				// move currSong to the first node
@@ -125,19 +102,9 @@ public class PlaylistFrame extends JFrame
 					currSong = currSong.next;
 				}
 				// change current song info
-				songInfo = refreshSongInfo(currSong.song);
-				// if not at the end
-				if (currSong!=null) {
-					// play the song
-					currSong.song.play();
-				}
-				// else if the end has been reached
-				else {
-					// go back to the beginning
-					currSong = playlist.head;
-					// play that
-					currSong.song.play();
-				}
+				setSongInfo();
+				// play the song
+				playSong(playlist);
 			}
 		}
 		// create the action listener
@@ -198,19 +165,25 @@ public class PlaylistFrame extends JFrame
 		this.setVisible(true);
 	}
 	
-	public JPanel refreshSongInfo (Song song)
+	public void playSong (Playlist playlist)
 	{
-		// make labels for the current song information
-		currTitle = new JLabel("Current song: " + song.getTitle());
-		currArtist = new JLabel("\nArtist: " + song.getArtist());
-		currAlbum = new JLabel("\nAlbum: " + song.getAlbum());
-		
-		// add the current song info to the panel
-		songInfo.add(currTitle);
-		songInfo.add(currArtist);
-		songInfo.add(currAlbum);
-		
-		// return the panel
-		return songInfo;
+		// if not at the end
+		if (currSong!=null) {
+			// play the song
+			currSong.song.play();
+		}
+		// else if the end has been reached
+		else {
+			// go back to the beginning
+			currSong = playlist.head;
+			// play that
+			currSong.song.play();
+		}
+	}
+	
+	public void setSongInfo () 
+	{
+		songInfo.setText("Current Song: " + currSong.song.getTitle() +"\nArtist: " + currSong.song.getArtist() 
+																			+ "\nAlbum: " + currSong.song.getAlbum());
 	}
 }
