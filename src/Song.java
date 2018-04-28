@@ -89,6 +89,6 @@ public class Song
 	}
 	
 	public void stop() {
-		Play.stopMidi();
+		Play.stopAudio();
 	}
 }

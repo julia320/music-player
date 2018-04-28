@@ -28,8 +28,10 @@ public class PlaylistFrame extends JFrame
 		currSong = playlist.head;
 		// initialize songInfo
 		songInfo = new JTextArea();
-		// show the current song information
-		setSongInfo();
+		// show the first song information
+		setSongInfo(playlist);
+		// play the first song
+		currSong.song.play();
 		
 		// get the content pane
 		Container cPane = this.getContentPane();
@@ -51,7 +53,7 @@ public class PlaylistFrame extends JFrame
 				currSong.song.stop();
 				while (currSong != null) {
 					// change current song info
-					setSongInfo();
+					setSongInfo(playlist);
 					// play the song in currNode
 					currSong.song.play();
 					// advance currSong
@@ -75,7 +77,7 @@ public class PlaylistFrame extends JFrame
 				// move currSong to the next song
 				currSong = currSong.next;
 				// change current song info
-				setSongInfo();
+				setSongInfo(playlist);
 				// play the song
 				playSong(playlist);
 			}
@@ -102,7 +104,7 @@ public class PlaylistFrame extends JFrame
 					currSong = currSong.next;
 				}
 				// change current song info
-				setSongInfo();
+				setSongInfo(playlist);
 				// play the song
 				playSong(playlist);
 			}
@@ -181,9 +183,21 @@ public class PlaylistFrame extends JFrame
 		}
 	}
 	
-	public void setSongInfo () 
+	public void setSongInfo (Playlist playlist) 
 	{
-		songInfo.setText("Current Song: " + currSong.song.getTitle() +"\nArtist: " + currSong.song.getArtist() 
+		// if not at the end
+		if (currSong!=null) {
+			// set the song info 
+			songInfo.setText("Current Song: " + currSong.song.getTitle() +"\nArtist: " + currSong.song.getArtist() 
 																			+ "\nAlbum: " + currSong.song.getAlbum());
+		}
+		// else if the end has been reached
+		else {
+			// go back to the beginning
+			currSong = playlist.head;
+			// set the song info 
+			songInfo.setText("Current Song: " + currSong.song.getTitle() +"\nArtist: " + currSong.song.getArtist() 
+																			+ "\nAlbum: " + currSong.song.getAlbum());
+		}
 	}
 }
