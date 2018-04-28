@@ -1,8 +1,4 @@
-/* Author: Julia Bristow
- * CS 2113
- * 
- * GUI for putting songs into a playlist
- */
+
 
 
 import javax.swing.*;
@@ -13,19 +9,19 @@ import java.awt.event.ActionListener;
 public class AddSongFrame extends JFrame 
 {
 	// elements needed for Song
-	JTextField songTitle;
-	JTextField artistName;
-	JTextField albumName;
-	JTextField songfilePath;
-	JTextField coverartPath; 
+	private JTextField songTitle;
+	private JTextField artistName;
+	private JTextField albumName;
+	private JTextField songfilePath;
+	private JTextField coverartPath; 
 	
 	// buttons
-	JButton addSong;
-	JButton goToPlaylist;
+	private JButton addSong;
+	private JButton goToPlaylist;
 	
 	// list
-	JTextArea songList; 
-	Playlist playlist;
+	private JTextArea songList; 
+	private Playlist playlist;
 	
 	
 	void go (int width, int height)

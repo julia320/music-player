@@ -1,9 +1,4 @@
-/* Authors: Julia Bristow and Neel Bhagwat
- * Song class			
- * Purpose: to make a song class that stores cover art, title, artist, album, and songData.
- * Plays the specified song. 
- * 
- */
+
 
 import java.awt.*;
 import java.io.*;
@@ -28,6 +23,7 @@ public class Song
 		this.songPath = songPath;
 		this.imagePath = imagePath;
 		this.songData= Read.audio(songPath);
+		this.image = Toolkit.getDefaultToolkit().getImage(imagePath);
 	}
 
 	// accessors
@@ -90,5 +86,9 @@ public class Song
 	public void play() {
 		Write.audio(this.songData, "mix.wav",2, 44100, 16);
 		Play.au("mix.wav", false);  
+	}
+	
+	public void stop() {
+		Play.stopMidi();
 	}
 }
