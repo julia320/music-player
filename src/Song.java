@@ -2,9 +2,11 @@
 
 import java.awt.*;
 import java.io.*;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import jm.util.*;
 
-public class Song
+public class Song extends JPanel
 {
 	private String title;
 	private String artist;
@@ -23,7 +25,7 @@ public class Song
 		this.songPath = songPath;
 		this.imagePath = imagePath;
 		this.songData= Read.audio(songPath);
-		this.image = Toolkit.getDefaultToolkit().getImage(imagePath);
+		this.image = new ImageIcon(imagePath, "cover").getImage();
 	}
 
 	// accessors
@@ -91,4 +93,10 @@ public class Song
 	public void stop() {
 		Play.stopMidi();
 	}
+	
+	public void paintComponent(Graphics g)
+	{
+		g.drawImage(image, 0,0, this);
+	}
+
 }
