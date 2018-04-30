@@ -91,7 +91,7 @@ public class Song extends JPanel
 	}
 	
 	public void stop() {
-		Play.stopMidi();
+		Play.stopAudio();
 	}
 	
 	public void paintComponent(Graphics g)

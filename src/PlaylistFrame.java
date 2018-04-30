@@ -221,14 +221,15 @@ public class PlaylistFrame extends JFrame
 			currSong = playlist.head;
 			// set the song info 
 			songInfo.setText("Current Song: " + currSong.song.getTitle() +"\nArtist: " + currSong.song.getArtist() 
-																			+ "\nAlbum: " + currSong.song.getAlbum());
+											+ "\nAlbum: " + currSong.song.getAlbum());
 		}
 		// else if not at the end
 		else {
 			// set the song info 
 			songInfo.setText("Current Song: " + currSong.song.getTitle() +"\nArtist: " + currSong.song.getArtist() 
-																			+ "\nAlbum: " + currSong.song.getAlbum());
+											+ "\nAlbum: " + currSong.song.getAlbum());
 		}
+
 		// message to be used in server (sent back and forth)
 		songMessage = currSong.song.getTitle() + " by " + currSong.song.getArtist();
 	}
@@ -249,9 +250,9 @@ public class PlaylistFrame extends JFrame
 		
 			// close the resource
 			ds.close();
-        } catch (Exception e) {
-        	System.out.println("caught an exception in sending function");
-        }
+	        } catch (Exception e) {
+        		System.out.println("caught an exception in sending function");
+       		}
 	}
 	
 	public ListNode getCurrentSong()
